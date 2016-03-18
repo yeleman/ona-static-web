@@ -1,0 +1,196 @@
+[
+    {
+        "label": "Offre collecte",
+        "type": "category"
+    },
+    {
+        "label": "Offre standard",
+        "type": "product",
+        "price": 490000,
+        "key": "collect_plan",
+        "order": 11,
+        "max": 1,
+        "min": 1,
+        "value": 1
+    },
+    {
+        "order": 12,
+        "label": "Long formulaire (4 pages supp.)",
+        "type": "product",
+        "price": 200000,
+        "max": 5,
+        "key": "long_form_extra"
+    },
+    {
+        "order": 13,
+        "label": "Extension dur\u00e9e (par mois)",
+        "type": "product",
+        "price": 250000,
+        "max": 3,
+        "key": "one_month_duration_extension"
+    },
+    {
+        "order": 14,
+        "label": "Backup donn\u00e9es (par an)",
+        "type": "product",
+        "price": 200000,
+        "max": 2,
+        "key": "one_year_backup"
+    },
+    {
+        "label": "Assistance ODK",
+        "type": "category"
+    },
+    {
+        "order": 21,
+        "label": "Configuration appareils (bloc de 50)",
+        "type": "product",
+        "price": 125000,
+        "max": 10,
+        "key": "50_devices_configuration"
+    },
+    {
+        "order": 22,
+        "label": "Formation formateurs (½j)",
+        "type": "product",
+        "price": 125000,
+        "max": 3,
+        "key": "trainers_training"
+    },
+    {
+        "order": 23,
+        "label": "Formation utilisateurs ODK (par jour)",
+        "type": "product",
+        "price": 150000,
+        "max": 20,
+        "key": "odk_users_training_day"
+    },
+    {
+        "label": "Formation XLSForm",
+        "type": "category"
+    },
+    {
+        "order": 31,
+        "label": "Formation standard (5j) pour 1-5 participants",
+        "type": "product",
+        "price": 2000000,
+        "max": 3,
+        "key": "xlsform_training"
+    },
+    {
+        "order": 32,
+        "label": "Journ\u00e9e suppl\u00e9mentaire",
+        "type": "product",
+        "price": 500000,
+        "max": 10,
+        "key": "xlsform_training_extra_day"
+    },
+    {
+        "label": "Tableau de bord personnalisé",
+        "type": "category"
+    },
+    {
+        "order": 41,
+        "label": "jour/homme n\u00e9cessaire (devis)",
+        "type": "product",
+        "price": 250000,
+        "max": 100,
+        "key": "dashboard_dev_day"
+    },
+    {
+        "label": "\u00c9valuation qualit\u00e9 des donn\u00e9es",
+        "type": "category"
+    },
+    {
+        "order": 51,
+        "label": "jour/homme n\u00e9cessaire (devis)",
+        "type": "product",
+        "price": 250000,
+        "max": 100,
+        "key": "quality_assessment_day"
+    },
+    {
+        "label": "Analyse des donn\u00e9es (rapport)",
+        "type": "category"
+    },
+    {
+        "order": 61,
+        "label": "jour/homme n\u00e9cessaire (devis)",
+        "type": "product",
+        "price": 250000,
+        "max": 100,
+        "key": "analysis_day"
+    },
+    {
+        "label": "Collecte vocale",
+        "type": "category"
+    },
+    {
+        "order": 71,
+        "label": "Agent fran\u00e7ais-bambara (par semaine)",
+        "type": "product",
+        "price": 600000,
+        "max": 24,
+        "key": "hotline_frbam_week"
+    },
+    {
+        "order": 72,
+        "label": "Agent peul (par semaine)",
+        "type": "product",
+        "price": 660000,
+        "max": 24,
+        "key": "hotline_fuc_week"
+    },
+    {
+        "order": 73,
+        "label": "Agent dogon (par semaine)",
+        "type": "product",
+        "price": 660000,
+        "max": 24,
+        "key": "hotline_djm_week"
+    },
+    {
+        "order": 74,
+        "label": "Agent songha\u00ef Gao (par semaine)",
+        "type": "product",
+        "price": 660000,
+        "max": 24,
+        "key": "hotline_ses_week"
+    },
+    {
+        "order": 75,
+        "label": "Agent songha\u00ef Tombouctou (par semaine)",
+        "type": "product",
+        "price": 660000,
+        "max": 24,
+        "key": "hotline_khq_week"
+    },
+    {
+        "order": 76,
+        "label": "Agent tamasheq (par semaine)",
+        "type": "product",
+        "price": 780000,
+        "max": 24,
+        "key": "hotline_taq_week"
+    },
+    {
+        "order": 77,
+        "label": "Enregistrement des conversations",
+        "type": "product",
+        "price": 290000,
+        "max": 1,
+        "key": "hotline_audio_records"
+    },
+    {
+        "label": "Crowdsourcing",
+        "type": "category"
+    },
+    {
+        "label": "Acc\u00e8s au data waan\u025b t\u0254n",
+        "type": "product",
+        "price": 450000,
+        "key": "crowdsourcing_access",
+        "max": 1,
+        "order": 81
+    }
+]

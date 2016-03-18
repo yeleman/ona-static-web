@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculateur ONA Mali</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <style type="text/css">
+  	body {
+  		margin: 0;
+  		padding: 0;
+  	}
+	header {
+		background: #f7f6f0;
+		box-shadow: 0px 2px 5px 0px rgba(50, 50, 50, 0.36);
+		margin: 0 auto;
+		padding: 1em 1em;
+		max-width: 100%;
+		margin-bottom: 1em;
+	}
+
+	header img { height: 1.2em; border: 0; }
+	header h1 { display: inline; }
+	p button { margin-left: 1em; }
+	.wrapper table tr th { text-align: right; }
+	.wrapper table tr th:first-child { text-align: left; }
+	.wrapper table tr td:first-child { padding-left: 2em; }
+	.wrapper table td.total {
+		background-color: #333333;
+		color: white;
+		font-weight: bold;
+		font-size: 150%;
+	}
+	
+	.wrapper table input { width: 4em; text-align: center; }
+	.wrapper table span.qtyprint { display: none; }
+
+	@media print {
+		* { font-size: .95em; }
+		.wrapper p { display: none; }
+		input[type="number"] { display: none; }
+		span.qtyprint { display: block; }
+	}
+</style>
+<script type="text/javascript" src="//code.jquery.com/jquery-2.2.1.min.js"></script>
+</head>
+<body>
+	<div class="page-content">
+		<header>
+			<img id="ona-logo" src="/styles/img/onamali-logo.png" alt="ONA">
+		</header>
+		<div class="wrapper container">
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+var CURRENCY = "XOF";
+var RATES_RETRIEVED = false;
+
+var jsdata = [];
+var conversion_url = "http://apilayer.net/api/live?access_key=f3f50c0cda3ae3cf4e2de1515e9862e3&currencies=USD,XOF";
+var currencies = {
+	"XOF": {"label": "FCFA (XOF)", "sign": "F", "rate": 1, "locale": "fr-fr"},
+	"USD": {"label": "USD", "sign": "$", "rate": 500, "locale": "en-us"},
+	"EUR": {"label": "EURO", "sign": "€", "rate": 655.957, "locale": "fr-fr"},
+}
+
+function get_currency(currency) {
+	if (currency === undefined)
+		currency = CURRENCY;
+	return currencies[currency];
+}
+
+function convert_from_xof(price, currency) {
+	if (currency == "XOF")
+		return price;
+	return price / get_currency().rate;
+}
+
+function key_from_elem(elem, prefix) {
+	return elem.attr('id').replace(prefix + '_', '');
+}
+
+function elem_from_key(key, prefix) {
+	return $('#' + prefix + '_' + key);
+}
+
+function formatted_num(number, add_currency) {
+	number = Math.round(number);
+	var str_val = "";
+	try{
+		 str_val += Intl.NumberFormat(get_currency().locale).format(number);
+	} catch (e) {
+		str_val += number.toString();
+	}
+	if (add_currency)
+		str_val += ' ' + get_currency().sign;
+	return str_val;
+}
+
+function amount_for(unit_price, quantity) {
+	return Math.round(unit_price * quantity);
+}
+
+function get_id(key, prefix) {
+	return prefix + '_' + key;
+}
+
+function index_for(key) {
+	var index = null;
+	$.each(jsdata, function (idx, row) {
+		if (row.key == key) {
+			index = idx;
+			return;
+		}
+	});
+	return index;
+}
+
+function get_total() {
+	var total = 0;
+	$.each(jsdata, function (idx, row) {
+		var price, qty = 0;
+		try { price = convert_from_xof(row.price) } catch (e) {}
+		try { qty = row.value } catch (e) {}
+		row_total = price * qty;
+		if (!isNaN(row_total)) {
+			total += row_total;
+		}
+	});
+	return Math.round(total);
+}
+
+function update_total() {
+	$('#total').text(formatted_num(get_total(), true));
+}
+
+function build_table() {
+	var table = $('<table class="table table-striped table-bordered" />');
+	var thead = $('<thead><th>Élément</th><th>Prix Unitaire</th><th>Quantité</th><th>Montant</th></thead>');
+	table.append(thead);
+	var tbody = $('<tbody />');
+	$.each(jsdata, function (idx, row) {
+		var tr = $('<tr />');
+		
+		if (row.type == "product") {
+			var label_td = $('<td />');
+			label_td.text(row.label);
+			tr.append(label_td);
+
+			var unit_price_td = $('<td class="text-right" />');
+			unit_price_td.text(formatted_num(convert_from_xof(row.price)));
+			unit_price_td.attr('id', get_id(row.key, 'price'));
+			tr.append(unit_price_td);
+			
+			var qty_td = $('<td class="text-right" />');
+			var qty_input = $('<input type="number" min="0" value="0" />');
+			qty_input.attr('id', get_id(row.key, 'qty'));
+			// apply options
+			$.each(['min', 'max', 'value'], function (idx, ekey) {
+				try { qty_input.attr(ekey, row[ekey]); } catch (e) {}	
+			});
+			// store actual value
+			var qty = parseInt(qty_input.val());
+			qty_td.append(qty_input);
+			// create invisible span
+			var qty_span = $('<span class="qtyprint" />');
+			qty_span.attr('id', get_id(row.key, 'qty_span'));
+
+			qty_span.text(formatted_num(qty));
+			qty_td.append(qty_span);
+			tr.append(qty_td);
+
+			var amount = amount_for(convert_from_xof(row.price), qty);
+			var amount_td = $('<td class="text-right" />');
+			amount_td.attr('id', get_id(row.key, 'amount'));
+			amount_td.text(formatted_num(amount, false));
+			tr.append(amount_td);
+		} else {
+			var label_th = $('<th colspan="4" />');
+			label_th.text(row.label);
+			tr.append(label_th);
+		}
+
+		tbody.append(tr);
+	});
+
+	// add total row
+	var total_tr = $('<tr />');
+	var total_td = $('<td colspan="4" class="text-right total" />');
+	total_td.attr('id', 'total');
+	total_td.text(formatted_num(get_total(), true));
+	total_tr.append(total_td);
+	tbody.append(total_tr);
+
+	table.append(tbody);
+	$('.wrapper').append(table);
+
+
+	$('input').on('change', function (e) {
+		var key = key_from_elem($(e.target), 'qty');
+		var index = index_for(key);
+		var row = jsdata[index];
+		var new_qty = $(this).val();
+
+		// update jsdata with new quantity
+		jsdata[index]['value'] = new_qty;
+		
+		// calculate new amount
+		amount = amount_for(convert_from_xof(row.price), new_qty);
+
+		// update invisible span
+		var qty_span = elem_from_key(key, 'qty_span');
+		qty_span.text(formatted_num(new_qty));
+
+		// display new amount
+		var amount_td = elem_from_key(key, 'amount');
+		amount_td.text(formatted_num(amount, false));
+
+		update_total();
+	});
+}
+
+$(document).ready(function () {
+	var currency_p = $('<p class="text-right" />');
+	$.each(currencies, function (code, row) {
+		var cbutton = $('<button class="btn btn-sm btn-default currency-btn" />');
+		if (code == "XOF") {
+			cbutton.addClass("active");
+		}
+		cbutton.text(row.label);
+		cbutton.data('currency', code);
+		currency_p.append(cbutton);
+	});
+
+	var print_btn = $('<button class="btn btn-sm btn-default btn-primary" />');
+	print_btn.text("imprimer");
+	print_btn.on('click', function (e) { window.print(); });
+	currency_p.append(print_btn);
+
+	$('.wrapper').append(currency_p);
+
+	$('button.currency-btn').on('click', function (e) {
+		$('button.currency-btn').removeClass("active");
+		$(this).addClass("active");
+		CURRENCY = $(this).data('currency');
+		$('.wrapper table').remove();
+		if (CURRENCY == "USD" && !RATES_RETRIEVED) {
+			$.getJSON(conversion_url)
+				.success(function (data) {
+					currencies['USD'].rate = data.quotes['USDXOF'];
+					RATES_RETRIEVED = true;
+					build_table();
+				})
+				.fail(function (error) {
+					console.error(error);
+					build_table();
+				});
+		} else {
+			build_table();
+		}
+	});
+
+	$.getJSON('/calculator/prices.json')
+		.success(function (data) {
+			jsdata = data;
+			build_table();
+		})
+		.fail(function (error) { alert("Unable to load prices from JSON"); console.error(error);
+	});
+});
+</script>
+</html>
