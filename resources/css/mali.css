@@ -1,0 +1,125 @@
+/* font */
+.pure-g [class*="pure-u"] {
+  font-family: "proxima-nova" sans-serif;
+  font-weight: 200;
+}
+
+.button-xsmall { font-size: 70%; }
+.button-small { font-size: 85%; }
+.button-large { font-size: 110%; }
+.button-xlarge { font-size: 125%; }
+
+#landing-page .jumbotron .text-layer .content .calls-to-action a {
+	font-size: .9em;
+	font-weight: 600;	
+}
+#solutions .intro { padding-top: 1em; }
+
+/* background for offer details in offer-page */
+#offer-page #offer-details {
+  margin-top: 1em;
+  padding: 0.5em 1em 1em;
+  margin-left: 1em;
+  background-color: #FAFAF7;
+  box-shadow: 0px 2px 5px rgba(50, 50, 50, 0.1);
+}
+#offer-page #offer-details h3 {
+  color: #333;
+}
+
+#offer-page #offer-details button {
+  background-color: #f45d2b;
+  color: #fff;
+  font-weight: 600;
+  margin-top: 1em;
+}
+
+#offer-page .jumbotron { background-image: url("/resources/img/landing-page-background.jpg"); }
+#offer-page .jumbotron .text-layer { background-color: rgba(71, 170, 89, 0.88); }
+#offer-page .content-block h2, #offer-page .content-block h3 { color: #47aa59; }
+
+/* options */
+#options-page .jumbotron { background-image: url("/resources/img/landing-page-background.jpg"); }
+#options-page .jumbotron .text-layer { background-color: rgba(50, 61, 68, 0.88); }
+#options-page .content-block h2,
+#options-page .content-block h3 { color: #323d44; margin: 0; }
+#options-page button {
+  background-color: #f45d2b;
+  color: #fff;
+  /*font-weight: 600;*/
+  /*margin-top: 1em;*/
+}
+
+#hotline-page .jumbotron { background-image: url("/resources/img/landing-page-background.jpg"); }
+#hotline-page .jumbotron .text-layer { background-color: rgba(67, 119, 130, 0.88); }
+#hotline-page h2, #hotline-page .content-block h3 { color: rgb(67, 119, 130); }
+/* hotline table */
+table.prices { width: 100%; }
+table.prices tr th:last-child, table.prices tr td:last-child { text-align: right; }
+
+/* justified alignment for text-only */
+/*.horizontally-centered { text-align: justify; }*/
+
+#crowdsourcing-page .jumbotron { background-image: url("/resources/img/landing-page-background.jpg"); }
+#crowdsourcing-page .jumbotron .text-layer { background-color: rgba(67, 119, 130, 0.88); }
+/*#crowdsourcing-page h1 { font-family: FreeSans,Arimo,"Droid Sans",Helvetica,Arial,sans-serif;
+font-size: 2.3em; }*/
+#crowdsourcing-page h2, #crowdsourcing-page .content-block h3 { color: rgb(67, 119, 130); }
+
+/* about */
+#about-page .jumbotron { background-image: url("/resources/img/about.jpg"); }
+#about-page .jumbotron .text-layer { background-color: rgba(32, 119, 197, 0.88); }
+#about-page h2, #about-page h3 { color: rgb(32, 119, 197); }
+
+/* footer */
+footer a.call {
+  background-color: #fff;
+  color: #59adea;
+  box-shadow: 0px 1px 3px #ddd;
+  font-weight: bold;
+  font-size: 1.3em;
+  /*margin-left: 1em;*/
+  -webkit-transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s;
+}
+footer a.call:hover {
+  box-shadow: 0px 1px 4px #ccc;
+  background-image: none;
+}
+
+footer nav { padding-bottom: 0; }
+footer #newsletter-signup .logo { margin-bottom: 0; }
+footer #newsletter-signup { padding-top: 0; }
+footer.content-block { padding-top: 40px; }
+footer .legal-info:last-child {
+	text-align: right;
+}
+
+/*#about-page .horizontally-centered { text-align: justify; }*/
+/*.logo-ylm { padding: 0px; box-sizing: border-box; text-align: right; }*/
+
+.slider {
+	text-align: center;
+}
+.slider img {
+	width: 100%;
+	max-height: 673px;
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: #666666 3px 3px 3px;
+	-moz-box-shadow: #666666 3px 3px 3px;
+	box-shadow: #666666 3px 3px 3px;
+	margin-bottom: 15px;
+
+	width: 80%;
+	margin: auto;
+}
+
+#product-slideshow p {
+	text-align: center;
+}
+#product-slideshow p i:hover {
+	cursor: pointer;
+}

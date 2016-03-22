@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+    <link rel="shortcut icon" href="/resources/img/favicon-32x32.png"/>
+    <link rel="icon" href="/resources/img/favicon-32x32.png"/>
+    <title>{% if page.title %}Ona Mali | {{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+
+    <link href="/resources/css/pure-0.6.0.min.css" rel="stylesheet">
+    <link href="/resources/css/pure-0.6.0-grids-responsive.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/resources/css/proxima-nova.css" rel="stylesheet"/>
+    <link href="{{ "/resources/css/style.css" | prepend: site.baseurl }}" rel="stylesheet">
+    <link href="{{ "/resources/css/mali.css" | prepend: site.baseurl }}" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-75275397-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </head>
+  <body id="{{ page.slug }}">
+    <div class="jumbotron">
+      <div class="text-layer content-block">
+        <label for="mobile-nav-revealer">
+          <i class="fa fa-navicon"></i>
+        </label>
+
+        <input type="checkbox" id="mobile-nav-revealer"/>
+        <nav class="pure-g main-navigation content-wrapper" role="navigation">
+          <a href="/" class="logo-link pure-u-1-12">
+            <img src="/resources/img/white-logo.png">
+          </a>
+          <div class="text-links pure-u-11-12 pure-g">
+            <div class="site-navigation">
+              <a href="/offre/">Offre</a>
+              <a href="/options/">Options</a>
+              <a href="/collecte-vocale/">Collecte vocale</a>
+              <a href="/crowdsourcing/">Crowdsourcing</a>
+            </div>
+            <div class="user-navigation">
+              <a href="#">Identification</a>
+              <a href="/a-propos/" class="signup-link"><i class="fa fa-phone"></i> 76 33 30 05</a>
+            </div>
+          </div>
+        </nav>
+        <div class="pure-g page-intro">
+          <div class="pure-u-1-2 content">
+            <h1>{% if page.ptitle %}{{ page.ptitle | escape }}{% else %}{{ page.title | escape }}{% endif %}</h1>
+            {% if page.slug == "landing-page" %}
+            <h2>{{ page.psubtitle | escape }}</h2>
+            <div class="pure-u-1 calls-to-action">
+              <a href="/a-propos/" class="signup-link">demander une démonstration</a>
+              <a href="/offre/" class="learn-more">découvrez notre offre</a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="main-content">

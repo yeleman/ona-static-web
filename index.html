@@ -1,0 +1,83 @@
+---
+layout: jumbotron
+ptitle: La révolution de la collecte au Mali
+psubtitle: vos premières données dès demain depuis Kayes ou Kidal (vraiment)
+slug: landing-page
+---
+
+<div id="product-slideshow">
+	<div class="slider">
+	    <img src="/resources/img/landing/hotline.jpg"/>
+	    <img style="display: none;" src="/resources/img/landing/crowdsourcing.jpg"/>
+	    <img style="display: none;" src="/resources/img/landing/collecte.jpg"/>
+	</div>
+	<p class="slider-commander" />
+</div>
+
+  
+  <div class="content-block" id="clients">
+    <div class="pure-g content-wrapper">
+      <div class="pure-u-3-4 horizontally-centered">
+        <h1>Ona s'utilise dans tous les domaines</h1>
+        <p>Ona est utilisable et utilisé dans des centaines de domaines différents: suivi-évaluation, urgence, santé, aide humanitaire, sondages, enquêtes d'opinions, suivi de livraison, etc.</p>
+        <p><a href="/a-propos/">Donnez-nous</a> votre domaine d'expertise pour obtenir une liste des utilisations similaires d'Ona.</p>
+      </div>
+      <div class="client-boxes pure-g">
+        <div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-4 pure-u-lg-1-5">
+          <img class="pure-img" src="/resources/img/client/logo-who.png">
+        </div>
+        <div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-4 pure-u-lg-1-5">
+          <img class="pure-img" src="/resources/img/client/logo-dfid.png">
+        </div>
+        <div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-4 pure-u-lg-1-5">
+          <img class="pure-img" src="/resources/img/client/logo-twb.png">
+        </div>
+        <div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-4 pure-u-lg-1-5">
+          <img class="pure-img" src="/resources/img/client/logo-usaid.png">
+        </div>
+        <div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-4 pure-u-lg-1-5">
+          <img class="pure-img" src="/resources/img/client/logo-concern.png">
+        </div>
+        <div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-4 pure-u-lg-1-5">
+          <img class="pure-img" src="/resources/img/client/logo-di.png">
+        </div>
+        <div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-4 pure-u-lg-1-5">
+          <img class="pure-img" src="/resources/img/client/logo-hki.png">
+        </div>
+        <div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-4 pure-u-lg-1-5">
+          <img class="pure-img" src="/resources/img/client/logo-popcouncil.png">
+        </div>
+        <div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-4 pure-u-lg-1-5">
+          <img class="pure-img" src="/resources/img/client/logo-sdi.png">
+        </div>
+        <div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-5">
+          <img class="pure-img" src="/resources/img/client/logo-irc.png">
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="/resources/js/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+	// create commander
+	var commander = $('.slider-commander');
+	$('.slider img').each(function (idx) {
+		var elem = $('<i class="fa fa-circle-o"></i>');
+		if (idx == 0) {
+			elem.addClass('fa-circle');
+		}
+		elem.on('click', function (e) {
+			// hide all imgs
+			$('.slider img').hide();
+			// set selected circle
+			$('.slider-commander i').attr('class', 'fa fa-circle-o');
+			$(this).addClass("fa-circle");
+			// show img
+			$($('.slider img')[idx]).show();
+		});
+		commander.append(elem);
+		commander.append(" ");
+	});
+});
+</script>
