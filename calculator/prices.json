@@ -192,5 +192,29 @@
         "key": "crowdsourcing_access",
         "max": 1,
         "order": 81
+    },
+    {
+        "label": "ONA Plans (pour info)",
+        "type": "category"
+    },
+    {
+        "label": "ONA Pro 6 mois",
+        "type": "product",
+        "price": 400000,
+        "key": "ona_pro_6m",
+        "order": 11,
+        "max": 1,
+        "min": 0,
+        "value": 0
+    },
+    {
+        "label": "ONA Pro 1 an",
+        "type": "product",
+        "price": 750000,
+        "key": "ona_pro_1y",
+        "order": 11,
+        "max": 3,
+        "min": 0,
+        "value": 0
     }
 ]
